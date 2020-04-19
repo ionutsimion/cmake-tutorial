@@ -1,0 +1,10 @@
+namespace is
+{
+    namespace version
+    {
+        auto const major = @Tutorial_VERSION_MAJOR@;
+        auto const minor = @Tutorial_VERSION_MINOR@;
+        auto const patch = @Tutorial_VERSION_PATCH@;
+    }
+}
+
