@@ -1,13 +1,15 @@
 #include <iostream>
+#include <string>
 
 #include <config.hxx>
 
-double sqr(double x) noexcept
-{
-    return x * x;
-}
+#ifdef USE_CUSTOM_MATH
+#include <math.hxx>
+#else
+#include <cmath>
+#endif
 
-int main(int argc, char **argv)
+int main(int const argc, char **argv)
 {
     using namespace is;
 
@@ -22,9 +24,12 @@ int main(int argc, char **argv)
     else
     {
         auto const x = std::stod(argv[1]);
-        std::cout << x << "^2 = " << sqr(x) << std::endl;
+#ifdef USE_CUSTOM_MATH
+        std::cout << x << "^2 = " << square_root(x) << std::endl;
+#else
+        std::cout << x << "^2 = " << std::sqrt(x) << std::endl;
+#endif
     }
 
     return 0;
 }
-

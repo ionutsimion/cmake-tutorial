@@ -1,10 +1,13 @@
+#pragma once
+
+#cmakedefine USE_CUSTOM_MATH
+
 namespace is
 {
     namespace version
     {
-        auto const major = @Tutorial_VERSION_MAJOR@;
-        auto const minor = @Tutorial_VERSION_MINOR@;
-        auto const patch = @Tutorial_VERSION_PATCH@;
+        auto constexpr major = @Tutorial_VERSION_MAJOR@;
+        auto constexpr minor = @Tutorial_VERSION_MINOR@;
+        auto constexpr patch = @Tutorial_VERSION_PATCH@;
     }
 }
-
