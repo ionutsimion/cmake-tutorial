@@ -1,4 +1,4 @@
-#include <iostream>
+﻿#include <iostream>
 #include <string>
 
 #include <config.hxx>
@@ -25,9 +25,9 @@ int main(int const argc, char **argv)
     {
         auto const x = std::stod(argv[1]);
 #ifdef USE_CUSTOM_MATH
-        std::cout << x << "^2 = " << square_root(x) << std::endl;
+        std::cout << "The square root of " << x << " is " << square_root(x) << std::endl;
 #else
-        std::cout << x << "^2 = " << std::sqrt(x) << std::endl;
+        std::cout << "The square root of " << x << " is " << std::sqrt(x) << std::endl;
 #endif
     }
 
