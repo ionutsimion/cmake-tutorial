@@ -34,6 +34,7 @@
 .vs/
 bin/
 out/
+build/
 *.swp
 config.hxx
 CMakeSettings.json

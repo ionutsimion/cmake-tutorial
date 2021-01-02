@@ -2,5 +2,5 @@
 
 namespace is
 {
-    double square_root(double);
+    float quake_reverse_square_root(float);
 }

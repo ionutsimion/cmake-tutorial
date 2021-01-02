@@ -24,11 +24,13 @@ int main(int const argc, char **argv)
     else
     {
         auto const x = std::stod(argv[1]);
+        std::cout << "The square root of " << x << " is " <<
 #ifdef USE_CUSTOM_MATH
-        std::cout << "The square root of " << x << " is " << square_root(x) << std::endl;
+            quake_reverse_square_root(x)
 #else
-        std::cout << "The square root of " << x << " is " << std::sqrt(x) << std::endl;
+            std::sqrt(x)
 #endif
+            << std::endl;
     }
 
     return 0;
