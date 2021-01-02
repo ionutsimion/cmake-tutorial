@@ -1,5 +1,4 @@
 #include <math.hxx>
-#include <cmath>
 
 namespace is
 {
