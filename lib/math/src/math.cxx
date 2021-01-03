@@ -3,7 +3,6 @@
 
 #include <iostream>
 
-#include <config.hxx>
 #include <math.hxx>
 
 namespace is

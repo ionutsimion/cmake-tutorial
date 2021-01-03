@@ -24,6 +24,9 @@ int main(int const argc, char **argv)
     else
     {
         auto const x = std::stod(argv[1]);
+#if defined(HAVE_LOG) && defined(HAVE_EXP)
+        std::cout << "Using exp end log to compute the square root" << std::endl;
+#endif
         std::cout << "The square root of " << x << " is " <<
 #ifdef USE_CUSTOM_MATH
 #   if defined(HAVE_LOG) && defined(HAVE_EXP)
