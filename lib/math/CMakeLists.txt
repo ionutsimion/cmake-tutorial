@@ -1,4 +1,9 @@
-add_library(Math src/math.cxx)
+add_executable(MakeTable src/make-table.cxx)
+add_custom_command(OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/table.hxx
+                   COMMAND MakeTable ${CMAKE_CURRENT_BINARY_DIR}/table.hxx
+                   DEPENDS MakeTable)
+
+add_library(Math src/math.cxx ${CMAKE_CURRENT_BINARY_DIR}/table.hxx) 
 
 include(CheckSymbolExists)
 check_symbol_exists(log "math.h" HAVE_LOG)
@@ -16,12 +21,11 @@ if(NOT (HAVE_LOG AND HAVE_EXP))
 endif()
 
 # add compile definitions
-if (HAVE_LOG AND HAVE_EXP)
+if(HAVE_LOG AND HAVE_EXP)
     target_compile_definitions(Math PRIVATE "HAVE_LOG" "HAVE_EXP")
 endif()
 
-target_include_directories(Math INTERFACE "${CMAKE_CURRENT_SOURCE_DIR}/src" PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/src")
+target_include_directories(Math INTERFACE "${CMAKE_CURRENT_SOURCE_DIR}/src" PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/src" "${CMAKE_CURRENT_BINARY_DIR}")
 
 install(TARGETS Math DESTINATION lib)
-install(FILES src/math.hxx DESTINATION include)
-
+install(FILES src/math.hxx src/table.hxx DESTINATION include)
