@@ -25,7 +25,9 @@ if(HAVE_LOG AND HAVE_EXP)
     target_compile_definitions(Math PRIVATE "HAVE_LOG" "HAVE_EXP")
 endif()
 
-target_include_directories(Math INTERFACE "${CMAKE_CURRENT_SOURCE_DIR}/src" PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/src" "${CMAKE_CURRENT_BINARY_DIR}")
+target_include_directories(Math
+        INTERFACE "${CMAKE_CURRENT_SOURCE_DIR}/src"
+        PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/src" "${CMAKE_CURRENT_BINARY_DIR}")
 
 install(TARGETS Math DESTINATION lib)
 install(FILES src/math.hxx src/table.hxx DESTINATION include)
