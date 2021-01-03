@@ -24,20 +24,12 @@ int main(int const argc, char **argv)
     else
     {
         auto const x = std::stod(argv[1]);
-#if defined(HAVE_LOG) && defined(HAVE_EXP)
-        std::cout << "Using exp end log to compute the square root" << std::endl;
-#endif
-        std::cout << "The square root of " << x << " is " <<
 #ifdef USE_CUSTOM_MATH
-#   if defined(HAVE_LOG) && defined(HAVE_EXP)
-            square_root(x)
-#   else
-            quake_reverse_square_root(x)
-#   endif
+        auto const f = quake_reverse_square_root(x);
 #else
-            std::sqrt(x)
+        auto const f = std::sqrt(x);
 #endif
-            << std::endl;
+       std::cout << "The square root of " << x << " is " << f << std::endl;
     }
 
     return 0;
