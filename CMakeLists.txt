@@ -11,7 +11,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
 add_executable(Tutorial src/tutorial.cxx)
 
 # Add math library
-if (USE_CUSTOM_MATH)
+if(USE_CUSTOM_MATH)
     add_subdirectory(lib/math)
     list(APPEND EXTRA_LIBS Math)
 endif()

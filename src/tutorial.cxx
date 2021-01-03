@@ -26,7 +26,11 @@ int main(int const argc, char **argv)
         auto const x = std::stod(argv[1]);
         std::cout << "The square root of " << x << " is " <<
 #ifdef USE_CUSTOM_MATH
+#   if defined(HAVE_LOG) && defined(HAVE_EXP)
+            square_root(x)
+#   else
             quake_reverse_square_root(x)
+#   endif
 #else
             std::sqrt(x)
 #endif
