@@ -32,9 +32,11 @@
 *.app
 
 .vs/
+.idea/
 bin/
 out/
 build/
+cmake-build*/
 *.swp
 config.hxx
 CMakeSettings.json
