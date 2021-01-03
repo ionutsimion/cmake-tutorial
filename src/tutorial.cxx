@@ -25,7 +25,7 @@ int main(int const argc, char **argv)
     {
         auto const x = std::stod(argv[1]);
 #ifdef USE_CUSTOM_MATH
-        auto const f = quake_reverse_square_root(x);
+        auto const f = is::square_root(x);
 #else
         auto const f = std::sqrt(x);
 #endif
