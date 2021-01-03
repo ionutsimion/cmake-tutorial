@@ -30,4 +30,4 @@ target_include_directories(Math
         PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/src" "${CMAKE_CURRENT_BINARY_DIR}")
 
 install(TARGETS Math DESTINATION lib)
-install(FILES src/math.hxx src/table.hxx DESTINATION include)
+install(FILES src/math.hxx ${CMAKE_CURRENT_BINARY_DIR}/table.hxx DESTINATION include)
