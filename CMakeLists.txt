@@ -23,7 +23,8 @@ target_include_directories(Tutorial PUBLIC "${PROJECT_BINARY_DIR}")
 install(TARGETS Tutorial DESTINATION bin)
 install(FILES "${PROJECT_BINARY_DIR}/config.hxx" DESTINATION include)
 
-enable_testing()
+# enable dashboard scripting
+include(CTest)
 
 # does the application run?
 add_test(NAME Runs COMMAND Tutorial 25)
