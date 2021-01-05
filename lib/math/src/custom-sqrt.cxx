@@ -45,22 +45,19 @@ namespace is::detail
 
 namespace is
 {
-    namespace is
+    double square_root(double const x)
     {
-        double square_root(double const x)
-        {
-            if (x <= 0.0)
-                return 0;
+        if (x <= 0.0)
+            return 0;
 
 #if defined(HAVE_LOG) and defined(HAVE_EXP)
-            if (x < 10)
+        if (x < 10)
         {
             std::cout << "Using the square roots table..." << std::endl;
-            return square_root_from_table(x);
+            return detail::square_root_from_table(x);
         }
-        return exp_log_square_root(x);
+        return detail::exp_log_square_root(x);
 #endif
-            return quake_reverse_square_root(x);
-        }
+        return detail::quake_reverse_square_root(x);
     }
 }

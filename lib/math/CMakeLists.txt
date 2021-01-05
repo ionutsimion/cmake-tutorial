@@ -37,7 +37,7 @@ if(USE_CUSTOM_MATH)
     # library that just does sqrt
     add_library(SqrtLibrary STATIC src/custom-sqrt.cxx ${CMAKE_CURRENT_BINARY_DIR}/table.hxx)
 
-    target_include_directories(SqrtLibrary PRIVATE "${CMAKE_CURRENT_BINARY_DIR}")
+    target_include_directories(SqrtLibrary PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/src" "${CMAKE_CURRENT_BINARY_DIR}")
 
     target_link_libraries(Math PRIVATE SqrtLibrary)
 endif()
