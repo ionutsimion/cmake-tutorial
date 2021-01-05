@@ -19,7 +19,6 @@ add_executable(Tutorial src/tutorial.cxx)
 # add math library
 add_subdirectory(lib/math)
 list(APPEND EXTRA_LIBS Math)
-
 target_link_libraries(Tutorial PUBLIC ${EXTRA_LIBS})
 
 target_include_directories(Tutorial PUBLIC "${PROJECT_BINARY_DIR}")

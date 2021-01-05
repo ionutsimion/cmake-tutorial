@@ -25,11 +25,6 @@ if(USE_CUSTOM_MATH)
         endif()
     endif()
 
-    # add compile definitions
-    if(HAVE_LOG AND HAVE_EXP)
-        target_compile_definitions(Math PRIVATE "HAVE_LOG" "HAVE_EXP")
-    endif()
-
     add_custom_command(OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/table.hxx
             COMMAND MakeTable ${CMAKE_CURRENT_BINARY_DIR}/table.hxx
             DEPENDS MakeTable)
@@ -37,7 +32,15 @@ if(USE_CUSTOM_MATH)
     # library that just does sqrt
     add_library(SqrtLibrary STATIC src/custom-sqrt.cxx ${CMAKE_CURRENT_BINARY_DIR}/table.hxx)
 
+    # add compile definitions
+    if(HAVE_LOG AND HAVE_EXP)
+        target_compile_definitions(SqrtLibrary PRIVATE "HAVE_LOG" "HAVE_EXP")
+    endif()
+
     target_include_directories(SqrtLibrary PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/src" "${CMAKE_CURRENT_BINARY_DIR}")
+
+    # state that SqrtLibrary needs PIC when the default is shared library
+    set_target_properties(SqrtLibrary PROPERTIES POSITION_INDEPENDENT_CODE ${BUILD_SHARED_LIBRARIES})
 
     target_link_libraries(Math PRIVATE SqrtLibrary)
 endif()

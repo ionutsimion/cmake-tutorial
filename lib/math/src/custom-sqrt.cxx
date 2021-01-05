@@ -51,12 +51,8 @@ namespace is
             return 0;
 
 #if defined(HAVE_LOG) and defined(HAVE_EXP)
-        if (x < 10)
-        {
-            std::cout << "Using the square roots table..." << std::endl;
-            return detail::square_root_from_table(x);
-        }
-        return detail::exp_log_square_root(x);
+        return x < 10 ? detail::square_root_from_table(x)
+                      : detail::exp_log_square_root(x);
 #endif
         return detail::quake_reverse_square_root(x);
     }

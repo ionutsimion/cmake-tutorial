@@ -2,12 +2,7 @@
 #include <string>
 
 #include <config.hxx>
-
-#ifdef USE_CUSTOM_MATH
 #include <math.hxx>
-#else
-#include <cmath>
-#endif
 
 int main(int const argc, char **argv)
 {
@@ -24,12 +19,7 @@ int main(int const argc, char **argv)
     else
     {
         auto const x = std::stod(argv[1]);
-#ifdef USE_CUSTOM_MATH
-        auto const f = is::square_root(x);
-#else
-        auto const f = std::sqrt(x);
-#endif
-       std::cout << "The square root of " << x << " is " << f << std::endl;
+        std::cout << "The square root of " << x << " is " << is::square_root(x) << std::endl;
     }
 
     return 0;
