@@ -1,20 +1,24 @@
 cmake_minimum_required(VERSION 3.10)
 
-option(USE_CUSTOM_MATH "Use custom math library" ON)
-
 project(Tutorial VERSION 1.0.0)
 configure_file(config.in config.hxx)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
 
+# control where the static and shared libraries are built so that on windows
+# we do not need to tinker with the path to run the executable
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}")
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}")
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}")
+
+option(BUILD_SHARED_LIBRARIES "Build using shared libraries" ON)
+
 add_executable(Tutorial src/tutorial.cxx)
 
-# Add math library
-if(USE_CUSTOM_MATH)
-    add_subdirectory(lib/math)
-    list(APPEND EXTRA_LIBS Math)
-endif()
+# add math library
+add_subdirectory(lib/math)
+list(APPEND EXTRA_LIBS Math)
 
 target_link_libraries(Tutorial PUBLIC ${EXTRA_LIBS})
 
