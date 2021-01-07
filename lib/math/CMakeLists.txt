@@ -1,7 +1,9 @@
 add_library(Math src/math.cxx)
 
 target_include_directories(Math
-        INTERFACE "${CMAKE_CURRENT_SOURCE_DIR}/src"
+        INTERFACE
+            $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src>
+            $<INSTALL_INTERFACE:include>
         PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/src" "${CMAKE_CURRENT_BINARY_DIR}")
 
 option(USE_CUSTOM_MATH "Use custom math library" ON)
@@ -49,9 +51,11 @@ endif()
 target_compile_definitions(Math PRIVATE "EXPORTING_MATH")
 
 # install rules
-set(installable_libs Math)
+set(installable_libs Math tutorial_compiler_flags)
 if(TARGET SqrtLibrary)
     list(APPEND installable_libs SqrtLibrary)
 endif()
-install(TARGETS ${installable_libs} DESTINATION lib)
+install(TARGETS ${installable_libs}
+        DESTINATION lib
+        EXPORT MathTargets)
 install(FILES src/math.hxx ${CMAKE_CURRENT_BINARY_DIR}/table.hxx DESTINATION include)

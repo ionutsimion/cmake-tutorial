@@ -36,6 +36,30 @@ target_include_directories(Tutorial PUBLIC "${PROJECT_BINARY_DIR}")
 install(TARGETS Tutorial DESTINATION bin)
 install(FILES "${PROJECT_BINARY_DIR}/config.hxx" DESTINATION include)
 
+install(EXPORT MathTargets
+        FILE MathTargets.cmake
+        DESTINATION lib/cmake/Math)
+
+include(CMakePackageConfigHelpers)
+# generate the config file that includes the exports
+configure_package_config_file(${CMAKE_CURRENT_SOURCE_DIR}/Config.cmake.in
+        "${CMAKE_CURRENT_BINARY_DIR}/MathConfig.cmake"
+        INSTALL_DESTINATION "lib/cmake/example"
+        NO_SET_AND_CHECK_MACRO
+        NO_CHECK_REQUIRED_COMPONENTS_MACRO)
+# generate the version file for the config file
+write_basic_package_version_file(
+        "${CMAKE_CURRENT_BINARY_DIR}/MathConfigVersion.cmake"
+        VERSION "${Tutorial_VERSION_MAJOR}.${Tutorial_VERSION_MINOR}.${Tutorial_VERSION_PATCH}"
+        COMPATIBILITY AnyNewerVersion
+)
+
+# install the configuration file
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/MathConfig.cmake
+        DESTINATION lib/cmake/Math)
+
+export(EXPORT MathTargets FILE "${CMAKE_CURRENT_BINARY_DIR}/MathTargets.cmake")
+
 # enable dashboard scripting
 include(CTest)
 
